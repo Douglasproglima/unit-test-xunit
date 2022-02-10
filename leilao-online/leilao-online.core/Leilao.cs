@@ -28,7 +28,10 @@ namespace LeilaoOnline.Core
 
         public void TerminarPregao()
         {
-            Ganhador = Lances.OrderBy(lance => lance.Valor).Last();
+            Ganhador = Lances
+                .DefaultIfEmpty(new Lance(null, 0))
+                .OrderBy(lance => lance.Valor)
+                .LastOrDefault();
         }
     }
 }

@@ -4,19 +4,29 @@ namespace LeilaoOnline.Tests
 {
     public class LeilaoTestes
     {
+        /*Padrões:
+         * Arrange | Act | Assert
+         * Given | When | Then
+         */
+
+        /* Classes de Equivalência
+         * BVA -> Boundary value analysis
+         * Equivalence partitioning 
+         */
+
         [Fact]
         public void TesteLeilaoComApenasUmLances()
         {
-            //Arrange - Cenário
+            //Arrange/Given - Cenário
             var leilao = new Leilao("Picasso");
             var paulo = new Interessada("Paulo", leilao);
 
             leilao.RecebeLance(paulo, 1000);
 
-            //Act - Método sob teste
+            //Act/When - Método sob teste
             leilao.TerminarPregao();
 
-            //Assert
+            //Assert/Then
             var valorEsperado = 1000;
             var valorObtido = leilao.Ganhador.Valor;
 
@@ -26,7 +36,7 @@ namespace LeilaoOnline.Tests
         [Fact]
         public void TesteLeilaoComVariosLances()
         {
-            //Arrange - Cenário
+            //Arrange/Given - Cenário
             var leilao = new Leilao("Picasso");
             var paulo = new Interessada("Paulo", leilao);
             var maria = new Interessada("Maria", leilao);
@@ -37,10 +47,10 @@ namespace LeilaoOnline.Tests
             leilao.RecebeLance(douglas, 1000);
             leilao.RecebeLance(maria, 990);
 
-            //Act - Método sob teste
+            //Act/When - Método sob teste
             leilao.TerminarPregao();
 
-            //Assert
+            //Assert/Then
             var valorEsperado = 1000;
             var valorObtido = leilao.Ganhador.Valor;
             Assert.Equal(valorEsperado, valorObtido);
@@ -49,7 +59,7 @@ namespace LeilaoOnline.Tests
         [Fact]
         public void TesteLeilaoComQuatroClientes()
         {
-            //Arrange - Cenário
+            //Arrange/Given - Cenário
             var leilao = new Leilao("Picasso");
             var paulo = new Interessada("Paulo", leilao);
             var maria = new Interessada("Maria", leilao);
@@ -61,10 +71,10 @@ namespace LeilaoOnline.Tests
             leilao.RecebeLance(maria, 990);
             leilao.RecebeLance(douglas, 1050);
 
-            //Act - Método sob teste
+            //Act/When - Método sob teste
             leilao.TerminarPregao();
 
-            //Assert
+            //Assert/Then
             var valorEsperado = 1050;
             var valorObtido = leilao.Ganhador.Valor;
             
@@ -75,7 +85,7 @@ namespace LeilaoOnline.Tests
         [Fact]
         public void TesteLeilaoComLancesOrdenadosPorValor()
         {
-            //Arrange - Cenário
+            //Arrange/Given - Cenário
             var leilao = new Leilao("Picasso");
             var paulo = new Interessada("Paulo", leilao);
             var maria = new Interessada("Maria", leilao);
@@ -86,11 +96,26 @@ namespace LeilaoOnline.Tests
             leilao.RecebeLance(maria, 998);
             leilao.RecebeLance(douglas, 1000);
 
-            //Act - Método sob teste
+            //Act/When - Método sob teste
+            leilao.TerminarPregao();
+            
+            //Assert/Then
+            var valorEsperado = 1000;
+            var valorObtido = leilao.Ganhador.Valor;
+            Assert.Equal(valorEsperado, valorObtido);
+        }
+
+        [Fact]
+        public void LeilaoSemLance()
+        {
+            //Arrange/Given - Cenário
+            var leilao = new Leilao("Picasso");
+
+            //Act/When - Método sob teste
             leilao.TerminarPregao();
 
-            //Assert
-            var valorEsperado = 1000;
+            //Assert/Then
+            var valorEsperado = 0;
             var valorObtido = leilao.Ganhador.Valor;
             Assert.Equal(valorEsperado, valorObtido);
         }
