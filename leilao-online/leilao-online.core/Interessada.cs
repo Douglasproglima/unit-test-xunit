@@ -1,4 +1,4 @@
-﻿namespace leilao_online.core
+﻿namespace LeilaoOnline.Core
 {
     public class Interessada
     {

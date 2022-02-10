@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Workspace\\C#\\unit-test-xunit\\leilao-online\\leilao-online.core\\leilao-online.core.csproj",
-      "projectName": "leilao-online.core",
-      "projectPath": "D:\\Workspace\\C#\\unit-test-xunit\\leilao-online\\leilao-online.core\\leilao-online.core.csproj",
+      "projectUniqueName": "D:\\Workspace\\C#\\unit-test-xunit\\leilao-online\\leilao-online.core\\LeilaoOnline.Core.csproj",
+      "projectName": "LeilaoOnline.Core",
+      "projectPath": "D:\\Workspace\\C#\\unit-test-xunit\\leilao-online\\leilao-online.core\\LeilaoOnline.Core.csproj",
       "packagesPath": "C:\\Users\\dougl\\.nuget\\packages\\",
       "outputPath": "D:\\Workspace\\C#\\unit-test-xunit\\leilao-online\\leilao-online.core\\obj\\",
       "projectStyle": "PackageReference",

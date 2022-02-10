@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NaQqOsOmSWf/ojkGLIvi6oLYJ0PhzwQuxX+VS5p/s5RdyyuiWraehWnjhvF3w0i4y0o8UQK0n7yhhzkdWzTjOQ==",
+  "dgSpecHash": "Bu/PoN6hYPb1DhHVUoxXI6yyFJYF9hsIG02D62VZgzFkF8skEImtSQho6ivBSHtgugQA4j4zk9r19h5uS/jLrA==",
   "success": true,
-  "projectFilePath": "D:\\Workspace\\C#\\unit-test-xunit\\leilao-online\\leilao-online.core\\leilao-online.core.csproj",
+  "projectFilePath": "D:\\Workspace\\C#\\unit-test-xunit\\leilao-online\\leilao-online.core\\LeilaoOnline.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

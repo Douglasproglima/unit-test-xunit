@@ -7,9 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{85E48E82-3EA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DD8B23DC-E3BB-4A3E-B9D3-4B5FA9F0F8E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "leilao-online.core", "leilao-online.core\leilao-online.core.csproj", "{1DE4C3C7-061F-484E-87E6-D0C45F92D028}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeilaoOnline.Core", "leilao-online.core\LeilaoOnline.Core.csproj", "{1DE4C3C7-061F-484E-87E6-D0C45F92D028}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "leilao-online.consoleApp", "leilao-online.consoleApp\leilao-online.consoleApp.csproj", "{9AFCAE53-21F7-4691-8C31-7661EF9CCB0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeilaoOnline.ConsoleApp", "leilao-online.consoleApp\LeilaoOnline.ConsoleApp.csproj", "{9AFCAE53-21F7-4691-8C31-7661EF9CCB0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeilaoOnline.Tests", "LeilaoOnline.Tests\LeilaoOnline.Tests.csproj", "{3275D140-67C0-4214-A9B4-32C4EE0908DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{9AFCAE53-21F7-4691-8C31-7661EF9CCB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AFCAE53-21F7-4691-8C31-7661EF9CCB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AFCAE53-21F7-4691-8C31-7661EF9CCB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3275D140-67C0-4214-A9B4-32C4EE0908DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3275D140-67C0-4214-A9B4-32C4EE0908DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3275D140-67C0-4214-A9B4-32C4EE0908DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3275D140-67C0-4214-A9B4-32C4EE0908DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1DE4C3C7-061F-484E-87E6-D0C45F92D028} = {85E48E82-3EAA-462A-9C4C-06D01E5D3C15}
 		{9AFCAE53-21F7-4691-8C31-7661EF9CCB0E} = {DD8B23DC-E3BB-4A3E-B9D3-4B5FA9F0F8E7}
+		{3275D140-67C0-4214-A9B4-32C4EE0908DD} = {DD8B23DC-E3BB-4A3E-B9D3-4B5FA9F0F8E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B438957B-D51D-4B66-9D8C-5661BA3CBE27}

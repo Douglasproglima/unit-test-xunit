@@ -1,26 +1,18 @@
 ﻿using LeilaoOnline.Core;
-using System;
-
-namespace LeilaoOnline.consoleApp
+using Xunit;
+namespace LeilaoOnline.Tests
 {
-    internal class Program
+    public class LeilaoTestes
     {
-        private static void ValidarValores(double valorEsperado, double valorObtido)
-        {
-            bool aprovado = valorEsperado == valorObtido;
-
-            Console.WriteLine($"Aprovado {aprovado} | Vlr. Esperado: {valorEsperado} | Vlr. Obtido: {valorObtido}");
-        }
-
-
-        private static void TesteLeilaoComApenasUmLances()
+        [Fact]
+        public void TesteLeilaoComApenasUmLances()
         {
             //Arrange - Cenário
             var leilao = new Leilao("Picasso");
             var paulo = new Interessada("Paulo", leilao);
-            
+
             leilao.RecebeLance(paulo, 850);
-            
+
             //Act - Método sob teste
             leilao.TerminarPregao();
 
@@ -28,11 +20,11 @@ namespace LeilaoOnline.consoleApp
             var valorEsperado = 1000;
             var valorObtido = leilao.Ganhador.Valor;
 
-            ValidarValores(valorEsperado, valorObtido);
+            Assert.Equal(valorEsperado, valorObtido);
         }
 
-
-        private static void TesteLeilaoComVariosLances()
+        [Fact]
+        public void TesteLeilaoComVariosLances()
         {
             //Arrange - Cenário
             var leilao = new Leilao("Picasso");
@@ -42,7 +34,7 @@ namespace LeilaoOnline.consoleApp
 
             leilao.RecebeLance(paulo, 100);
             leilao.RecebeLance(maria, 998);
-            leilao.RecebeLance(douglas, 1075);
+            leilao.RecebeLance(douglas, 1000);
             leilao.RecebeLance(maria, 990);
 
             //Act - Método sob teste
@@ -51,13 +43,7 @@ namespace LeilaoOnline.consoleApp
             //Assert
             var valorEsperado = 1000;
             var valorObtido = leilao.Ganhador.Valor;
-            ValidarValores(valorEsperado, valorObtido);
-        }
-
-        static void Main(string[] args)
-        {
-            TesteLeilaoComVariosLances();
-            TesteLeilaoComApenasUmLances();
+            Assert.Equal(valorEsperado, valorObtido);
         }
     }
 }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>leilao_online.core</RootNamespace>
+    <RootNamespace>LeilaoOnline.Core</RootNamespace>
   </PropertyGroup>
 
 </Project>

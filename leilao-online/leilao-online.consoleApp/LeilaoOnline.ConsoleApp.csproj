@@ -3,11 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>leilao_online.consoleApp</RootNamespace>
+    <RootNamespace>LeilaoOnline.ConsoleApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\leilao-online.core\leilao-online.core.csproj" />
+    <ProjectReference Include="..\leilao-online.core\LeilaoOnline.Core.csproj" />
   </ItemGroup>
 
 </Project>

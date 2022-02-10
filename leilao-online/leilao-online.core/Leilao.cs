@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 
-namespace leilao_online.core
+namespace LeilaoOnline.Core
 {
     public class Leilao
     {
@@ -22,11 +22,6 @@ namespace leilao_online.core
         }
 
         public void IniciaPregao()
-        {
-
-        }
-
-        public void TerminaPregao()
         {
 
         }
