@@ -14,93 +14,28 @@ namespace LeilaoOnline.Tests
          * Equivalence partitioning 
          */
 
-        [Fact]
-        public void TesteLeilaoComApenasUmLances()
+        /*Tipos de Testes
+         * [Fact]....: São teste que são verdades para um tipo particular de dado.
+         * [Theories] Or Data/Driven Tests: Teste orientado a dados.
+         */
+
+        [Theory]
+        [InlineData(1000, new double[] { 100, 990, 998, 1000})]
+        [InlineData(1000, new double[] { 100, 1000, 990, 998})]
+        [InlineData(550, new double[] { 550 })]
+        public void TesteLeilaoComLancesOrdenadosPorValor(double valorEsperado, double[] ofertas)
         {
             //Arrange/Given - Cenário
-            var leilao = new Leilao("Picasso");
-            var paulo = new Interessada("Paulo", leilao);
-
-            leilao.RecebeLance(paulo, 1000);
-
-            //Act/When - Método sob teste
-            leilao.TerminarPregao();
-
-            //Assert/Then
-            var valorEsperado = 1000;
-            var valorObtido = leilao.Ganhador.Valor;
-
-            Assert.Equal(valorEsperado, valorObtido);
-        }
-
-        [Fact]
-        public void TesteLeilaoComVariosLances()
-        {
-            //Arrange/Given - Cenário
-            var leilao = new Leilao("Picasso");
-            var paulo = new Interessada("Paulo", leilao);
-            var maria = new Interessada("Maria", leilao);
+            var leilao = new Leilao("Van Gogh");
             var douglas = new Interessada("Douglas", leilao);
 
-            leilao.RecebeLance(paulo, 100);
-            leilao.RecebeLance(maria, 998);
-            leilao.RecebeLance(douglas, 1000);
-            leilao.RecebeLance(maria, 990);
-
-            //Act/When - Método sob teste
-            leilao.TerminarPregao();
-
-            //Assert/Then
-            var valorEsperado = 1000;
-            var valorObtido = leilao.Ganhador.Valor;
-            Assert.Equal(valorEsperado, valorObtido);
-        }
-
-        [Fact]
-        public void TesteLeilaoComQuatroClientes()
-        {
-            //Arrange/Given - Cenário
-            var leilao = new Leilao("Picasso");
-            var paulo = new Interessada("Paulo", leilao);
-            var maria = new Interessada("Maria", leilao);
-            var douglas = new Interessada("Douglas", leilao);
-
-            leilao.RecebeLance(paulo, 100);
-            leilao.RecebeLance(maria, 998);
-            leilao.RecebeLance(douglas, 1000);
-            leilao.RecebeLance(maria, 990);
-            leilao.RecebeLance(douglas, 1050);
-
-            //Act/When - Método sob teste
-            leilao.TerminarPregao();
-
-            //Assert/Then
-            var valorEsperado = 1050;
-            var valorObtido = leilao.Ganhador.Valor;
-            
-            Assert.Equal(valorEsperado, valorObtido);
-            Assert.Equal(douglas, leilao.Ganhador.Cliente);
-        }
-
-        [Fact]
-        public void TesteLeilaoComLancesOrdenadosPorValor()
-        {
-            //Arrange/Given - Cenário
-            var leilao = new Leilao("Picasso");
-            var paulo = new Interessada("Paulo", leilao);
-            var maria = new Interessada("Maria", leilao);
-            var douglas = new Interessada("Douglas", leilao);
-
-            leilao.RecebeLance(paulo, 100);
-            leilao.RecebeLance(maria, 990);
-            leilao.RecebeLance(maria, 998);
-            leilao.RecebeLance(douglas, 1000);
+            foreach (var oferta in ofertas)
+                leilao.RecebeLance(douglas, oferta);
 
             //Act/When - Método sob teste
             leilao.TerminarPregao();
             
             //Assert/Then
-            var valorEsperado = 1000;
             var valorObtido = leilao.Ganhador.Valor;
             Assert.Equal(valorEsperado, valorObtido);
         }
