@@ -1,4 +1,5 @@
 ﻿using LeilaoOnline.Core;
+using System.Collections.Generic;
 using Xunit;
 namespace LeilaoOnline.Tests
 {
@@ -15,9 +16,27 @@ namespace LeilaoOnline.Tests
          */
 
         /*Tipos de Testes
-         * [Fact]....: São teste que são verdades para um tipo particular de dado.
-         * [Theories] Or Data/Driven Tests: Teste orientado a dados.
+         * [Fact]......: São teste que são verdades para um tipo particular de dado.
+         * [Theories]..: Or Data/Driven Tests: Teste orientado a dados.
+         * [MemberData]: 
+         * [ClassData].: Teste orientados a classes, em classes estáticas, usado para uma coleção de testes
          */
+
+        [Theory]
+        [ClassData(typeof(LeilaoFinalizarPregao))]
+        public void RetornarMaiorLanceDoLeilaoComPeloMenosUmLance(Lance ganhandor, Leilao leilao, List<Lance> lances)
+        {
+            // Arrange/Give - Cenário
+            foreach (var lance in lances)
+                leilao.RecebeLance(lance.Cliente, lance.Valor);
+
+            //Act/When - Método sob teste
+            leilao.TerminarPregao();
+
+            //Assert/Then
+            Assert.Equal(ganhandor.Cliente, leilao.Ganhador.Cliente);
+            Assert.Equal(ganhandor.Valor, leilao.Ganhador.Valor);
+        }
 
         [Theory]
         [InlineData(1000, new double[] { 100, 990, 998, 1000})]
