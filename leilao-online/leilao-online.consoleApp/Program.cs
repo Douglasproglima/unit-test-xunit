@@ -19,7 +19,7 @@ namespace LeilaoOnline.consoleApp
             var leilao = new Leilao("Picasso");
             var paulo = new Interessada("Paulo", leilao);
             
-            leilao.RecebeLance(paulo, 850);
+            leilao.ReceberLance(paulo, 850);
             
             //Act - Método sob teste
             leilao.TerminarPregao();
@@ -40,10 +40,10 @@ namespace LeilaoOnline.consoleApp
             var maria = new Interessada("Maria", leilao);
             var douglas = new Interessada("Douglas", leilao);
 
-            leilao.RecebeLance(paulo, 100);
-            leilao.RecebeLance(maria, 998);
-            leilao.RecebeLance(douglas, 1075);
-            leilao.RecebeLance(maria, 990);
+            leilao.ReceberLance(paulo, 100);
+            leilao.ReceberLance(maria, 998);
+            leilao.ReceberLance(douglas, 1075);
+            leilao.ReceberLance(maria, 990);
 
             //Act - Método sob teste
             leilao.TerminarPregao();

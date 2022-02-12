@@ -25,13 +25,13 @@ namespace LeilaoOnline.Core
             Status = StatusLeilao.ANTES_PREGAO;
         }
 
-        public void RecebeLance(Interessada cliente, double valor)
+        public void ReceberLance(Interessada cliente, double valor)
         {
             if(Status.Equals(StatusLeilao.EM_ANDAMENTO))
                 _lances.Add(new Lance(cliente, valor));
         }
 
-        public void IniciaPregao()
+        public void IniciarPregao()
         {
             Status = StatusLeilao.EM_ANDAMENTO;
         }

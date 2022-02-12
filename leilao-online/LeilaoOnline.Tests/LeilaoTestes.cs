@@ -27,8 +27,9 @@ namespace LeilaoOnline.Tests
         public void RetornarMaiorLanceDoLeilaoComPeloMenosUmLance(Lance ganhandor, Leilao leilao, List<Lance> lances)
         {
             // Arrange/Give - Cenário
+            leilao.IniciarPregao();
             foreach (var lance in lances)
-                leilao.RecebeLance(lance.Cliente, lance.Valor);
+                leilao.ReceberLance(lance.Cliente, lance.Valor);
 
             //Act/When - Método sob teste
             leilao.TerminarPregao();
@@ -48,8 +49,10 @@ namespace LeilaoOnline.Tests
             var leilao = new Leilao("Van Gogh");
             var douglas = new Interessada("Douglas", leilao);
 
+            leilao.IniciarPregao();
+
             foreach (var oferta in ofertas)
-                leilao.RecebeLance(douglas, oferta);
+                leilao.ReceberLance(douglas, oferta);
 
             //Act/When - Método sob teste
             leilao.TerminarPregao();
