@@ -22,7 +22,8 @@ namespace LeilaoOnline.Core
         {
             Peca = peca;
             _lances = new List<Lance>();
-            Status = StatusLeilao.ANTES_PREGAO;
+            Status = StatusLeilao.EM_ANDAMENTO;
+            //Status = StatusLeilao.ANTES_PREGAO;
         }
 
         public void ReceberLance(Interessada cliente, double valor)
@@ -38,11 +39,12 @@ namespace LeilaoOnline.Core
 
         public void TerminarPregao()
         {
-            Status = StatusLeilao.FINALIZADO;
             Ganhador = Lances
                 .DefaultIfEmpty(new Lance(null, 0))
                 .OrderBy(lance => lance.Valor)
                 .LastOrDefault();
+
+            Status = StatusLeilao.FINALIZADO;
         }
     }
 }

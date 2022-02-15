@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Xunit;
 namespace LeilaoOnline.Tests
 {
-    public class LeilaoTestes
+    public class LeilaoTerminaPregao
     {
         /*Padrões:
          * Arrange | Act | Assert
@@ -20,6 +20,17 @@ namespace LeilaoOnline.Tests
          * [Theories]..: Or Data/Driven Tests: Teste orientado a dados.
          * [MemberData]: 
          * [ClassData].: Teste orientados a classes, em classes estáticas, usado para uma coleção de testes
+         */
+
+        /* Nomes dos Testes: Give, When e Then
+         * 1 Parte -  Qual o método que está sendo testado;
+         * 2 Parte -  Qual as condições de entrada ou qual é o cenário
+         * 3 Parte - Qual é a espectativa do teste
+         * EXEMPLOS:
+         *  CatalogoControllerGetImage.CallsImageServiceWithId
+         *  CatalogoControllerGetImage.LogsWarningGivenImageMissingException
+         *  CatalogoControllerGetImage.ReturnsFileResultWithByteGivenSuccess
+         *  CatalogoControllerGetImage.ReturnsNotFoundResultGivenImageMissingException
          */
 
         [Theory]
@@ -39,11 +50,16 @@ namespace LeilaoOnline.Tests
             Assert.Equal(ganhandor.Valor, leilao.Ganhador.Valor);
         }
 
+        /* Give: Dado leilão com pelo ao menos um lance
+         * When: Quando o pregão/leilão terminar
+         * Then: Então o valor esperado é maior que o valor dado
+         *       e o cliente ganhador é o que deu o maior lance.
+         */
         [Theory]
         [InlineData(1000, new double[] { 100, 990, 998, 1000})]
         [InlineData(1000, new double[] { 100, 1000, 990, 998})]
         [InlineData(550, new double[] { 550 })]
-        public void TesteLeilaoComLancesOrdenadosPorValor(double valorEsperado, double[] ofertas)
+        public void RetornarMaiorValorDadoLeilaoComPeloMenosUmLance(double valorEsperado, double[] ofertas)
         {
             //Arrange/Given - Cenário
             var leilao = new Leilao("Van Gogh");
@@ -62,8 +78,12 @@ namespace LeilaoOnline.Tests
             Assert.Equal(valorEsperado, valorObtido);
         }
 
+        /* Give: Dado leilão sem qualquer lance
+         * When: Quando o pregão/leilão terminar
+         * Then: Então o valor do lance ganhador é zero
+         */
         [Fact]
-        public void LeilaoSemLance()
+        public void RetornarZeroDadoLeilaoSemLance()
         {
             //Arrange/Given - Cenário
             var leilao = new Leilao("Picasso");
