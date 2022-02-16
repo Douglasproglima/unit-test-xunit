@@ -22,8 +22,8 @@ namespace LeilaoOnline.Core
         {
             Peca = peca;
             _lances = new List<Lance>();
-            Status = StatusLeilao.EM_ANDAMENTO;
-            //Status = StatusLeilao.ANTES_PREGAO;
+            //Status = StatusLeilao.EM_ANDAMENTO;
+            Status = StatusLeilao.ANTES_PREGAO;
         }
 
         public void ReceberLance(Interessada cliente, double valor)

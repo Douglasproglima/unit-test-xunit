@@ -18,7 +18,8 @@ namespace LeilaoOnline.Tests
             //Arrange/Given - Cenário
             var leilao = new Leilao("Picasso");
             var siglano = new Interessada("Siglano", leilao);
-
+            
+            leilao.IniciarPregao();
             foreach (var oferta in ofertas)
                 leilao.ReceberLance(siglano, oferta);
 
