@@ -64,11 +64,18 @@ namespace LeilaoOnline.Tests
             //Arrange/Given - Cenário
             var leilao = new Leilao("Van Gogh");
             var douglas = new Interessada("Douglas", leilao);
-
+            var fulano = new Interessada("Fulano", leilao);
+            
             leilao.IniciarPregao();
 
-            foreach (var oferta in ofertas)
-                leilao.ReceberLance(douglas, oferta);
+            for (int index = 0; index < ofertas.Length; index++)
+            {
+                var valor = ofertas[index];
+                if ((index % 2) == 0)
+                    leilao.ReceberLance(douglas, valor);
+                else
+                    leilao.ReceberLance(fulano, valor);
+            }
 
             //Act/When - Método sob teste
             leilao.TerminarPregao();

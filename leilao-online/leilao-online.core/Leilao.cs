@@ -12,6 +12,7 @@ namespace LeilaoOnline.Core
             FINALIZADO
         }
 
+        private Interessada _ultimoCliente;
         private IList<Lance> _lances;
         public IEnumerable<Lance> Lances => _lances;
         public string Peca { get; }
@@ -28,8 +29,14 @@ namespace LeilaoOnline.Core
 
         public void ReceberLance(Interessada cliente, double valor)
         {
-            if(Status.Equals(StatusLeilao.EM_ANDAMENTO))
-                _lances.Add(new Lance(cliente, valor));
+            if (Status.Equals(StatusLeilao.EM_ANDAMENTO))
+            {
+                if (cliente != _ultimoCliente)
+                { 
+                    _lances.Add(new Lance(cliente, valor));
+                    _ultimoCliente = cliente;
+                }
+            }
         }
 
         public void IniciarPregao()
