@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 namespace LeilaoOnline.Core
 {
+    /*CICLO TDD - Test Driven Domain
+     * 1 - Novo Teste
+     * 2 - Falha do Teste
+     * 3 - Correção do teste(Em produção ou cenário)
+     * 4 - Teste Success
+     * 5 - Refatorar
+     */
+
     public class Leilao
     {
         public enum StatusLeilao
@@ -27,15 +35,20 @@ namespace LeilaoOnline.Core
             Status = StatusLeilao.ANTES_PREGAO;
         }
 
+        private bool ProximoLanceEhValido(Interessada cliente, double valor)
+        {
+            bool valido = (StatusLeilao.EM_ANDAMENTO.Equals(Status)) &&
+                          (cliente != _ultimoCliente);
+
+            return valido;
+        }
+
         public void ReceberLance(Interessada cliente, double valor)
         {
-            if (Status.Equals(StatusLeilao.EM_ANDAMENTO))
+            if (this.ProximoLanceEhValido(cliente, valor))
             {
-                if (cliente != _ultimoCliente)
-                { 
-                    _lances.Add(new Lance(cliente, valor));
-                    _ultimoCliente = cliente;
-                }
+                _lances.Add(new Lance(cliente, valor));
+                _ultimoCliente = cliente;
             }
         }
 
