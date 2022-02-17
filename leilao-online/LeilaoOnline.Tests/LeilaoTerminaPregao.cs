@@ -97,10 +97,13 @@ namespace LeilaoOnline.Tests
             var leilao = new Leilao("Picasso");
 
             //Assert/Then
-            Assert.Throws<InvalidOperationException>( () =>
+            var excecaoObtida = Assert.Throws<InvalidOperationException>( () =>
                 //Act/When - Método sob teste
                 leilao.TerminarPregao() //delegate
             );
+
+            var msgEsperada = "Não é possível terminar o pregão sem ter iniciado.";
+            Assert.Equal(msgEsperada, excecaoObtida.Message);
         }
 
         /* Give: Dado leilão sem qualquer lance
@@ -112,6 +115,7 @@ namespace LeilaoOnline.Tests
         {
             //Arrange/Given - Cenário
             var leilao = new Leilao("Picasso");
+            leilao.IniciarPregao();
 
             //Act/When - Método sob teste
             leilao.TerminarPregao();
