@@ -57,8 +57,8 @@ namespace LeilaoOnline.Tests
          *       e o cliente ganhador é o que deu o maior lance.
          */
         [Theory]
-        [InlineData(1000, new double[] { 100, 990, 998, 1000})]
-        [InlineData(1000, new double[] { 100, 1000, 990, 998})]
+        [InlineData(1000, new double[] { 100, 990, 998, 1000 })]
+        [InlineData(1000, new double[] { 100, 1000, 990, 998 })]
         [InlineData(550, new double[] { 550 })]
         public void RetornarMaiorValorDadoLeilaoComPeloMenosUmLance(double valorEsperado, double[] ofertas)
         {
@@ -66,7 +66,7 @@ namespace LeilaoOnline.Tests
             var leilao = new Leilao("Van Gogh");
             var douglas = new Interessada("Douglas", leilao);
             var fulano = new Interessada("Fulano", leilao);
-            
+
             leilao.IniciarPregao();
 
             for (int index = 0; index < ofertas.Length; index++)
@@ -80,7 +80,7 @@ namespace LeilaoOnline.Tests
 
             //Act/When - Método sob teste
             leilao.TerminarPregao();
-            
+
             //Assert/Then
             var valorObtido = leilao.Ganhador.Valor;
             Assert.Equal(valorEsperado, valorObtido);
@@ -96,19 +96,11 @@ namespace LeilaoOnline.Tests
             //Arrange/Given - Cenário
             var leilao = new Leilao("Picasso");
 
-            try
-            {
+            //Assert/Then
+            Assert.Throws<InvalidOperationException>( () =>
                 //Act/When - Método sob teste
-                leilao.TerminarPregao();
-
-                //Gera uma excessão qualquer
-                Assert.True(false);
-            }
-            catch (Exception erro)
-            {
-                //Assert/Then
-                Assert.IsType<InvalidOperationException>(erro);
-            }
+                leilao.TerminarPregao() //delegate
+            );
         }
 
         /* Give: Dado leilão sem qualquer lance
