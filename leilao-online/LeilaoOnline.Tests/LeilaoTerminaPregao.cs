@@ -97,9 +97,9 @@ namespace LeilaoOnline.Tests
             var leilao = new Leilao("Picasso");
 
             //Assert/Then
-            var excecaoObtida = Assert.Throws<InvalidOperationException>( () =>
-                //Act/When - Método sob teste
-                leilao.TerminarPregao() //delegate
+            var excecaoObtida = Assert.Throws<InvalidOperationException>(() =>
+               //Act/When - Método sob teste
+               leilao.TerminarPregao() //delegate
             );
 
             var msgEsperada = "Não é possível terminar o pregão sem ter iniciado.";
@@ -122,6 +122,38 @@ namespace LeilaoOnline.Tests
 
             //Assert/Then
             var valorEsperado = 0;
+            var valorObtido = leilao.Ganhador.Valor;
+            Assert.Equal(valorEsperado, valorObtido);
+        }
+
+        /* Give: Dado leilão com a nova modalidade
+         * When: Quando o valor do leilao for proximo ao maior lance
+         * Then: Então retornar o valor mais proximo
+         */
+        [Theory]
+        [InlineData(1200, 1250, new double[]{ 800, 1150, 1400, 1250})]
+        public void RetornarValorSuperiorMaisProximoDadoLeilaoNessaModalidade(double valorDestino, double valorEsperado, double[] ofertas)
+        {
+            //Arrange/Given - Cenário
+            var leilao = new Leilao("Van Gogh", valorDestino);
+            var douglas = new Interessada("Douglas", leilao);
+            var fulano = new Interessada("Fulano", leilao);
+
+            leilao.IniciarPregao();
+
+            for (int index = 0; index < ofertas.Length; index++)
+            {
+                var valor = ofertas[index];
+                if ((index % 2) == 0)
+                    leilao.ReceberLance(douglas, valor);
+                else
+                    leilao.ReceberLance(fulano, valor);
+            }
+
+            //Act/When - Método sob teste
+            leilao.TerminarPregao();
+
+            //Assert/Then
             var valorObtido = leilao.Ganhador.Valor;
             Assert.Equal(valorEsperado, valorObtido);
         }
