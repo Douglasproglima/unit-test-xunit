@@ -1,4 +1,5 @@
 ﻿using LeilaoOnline.Core;
+using System;
 using System.Collections.Generic;
 using Xunit;
 namespace LeilaoOnline.Tests
@@ -83,6 +84,31 @@ namespace LeilaoOnline.Tests
             //Assert/Then
             var valorObtido = leilao.Ganhador.Valor;
             Assert.Equal(valorEsperado, valorObtido);
+        }
+
+        /* Give: Dado leilão sem iniciar
+         * When: Quando o pregão/leilão terminar
+         * Then: Então irá retornar uma mensagem
+         */
+        [Fact]
+        public void LancarInvalidOperationExceptionDadoLeilaoNaoIniciado()
+        {
+            //Arrange/Given - Cenário
+            var leilao = new Leilao("Picasso");
+
+            try
+            {
+                //Act/When - Método sob teste
+                leilao.TerminarPregao();
+
+                //Gera uma excessão qualquer
+                Assert.True(false);
+            }
+            catch (Exception erro)
+            {
+                //Assert/Then
+                Assert.IsType<InvalidOperationException>(erro);
+            }
         }
 
         /* Give: Dado leilão sem qualquer lance
