@@ -1,4 +1,5 @@
 ﻿using LeilaoOnline.Core;
+using LeilaoOnline.Core.ModalidadeAvaliacao;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,7 +9,8 @@ namespace LeilaoOnline.Tests
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            var leilaoCenario1 = new Leilao("Peça");
+            var modaliade = new MaiorValor();
+            var leilaoCenario1 = new Leilao("Peça", modaliade);
             var lancesCenario1 = new List<Lance> {
                 new Lance(new Interessada(string.Empty, leilaoCenario1), 800),
                 new Lance(new Interessada(string.Empty, leilaoCenario1), 900),
@@ -22,7 +24,7 @@ namespace LeilaoOnline.Tests
                 lancesCenario1
             };
 
-            Leilao leilaoCenario2 = new Leilao("Peça");
+            Leilao leilaoCenario2 = new Leilao("Peça", modaliade);
             var lancesCenario2 = new List<Lance> {
                 new Lance(new Interessada(string.Empty, leilaoCenario2), 800),
                 new Lance(new Interessada(string.Empty, leilaoCenario2), 900),
@@ -36,7 +38,7 @@ namespace LeilaoOnline.Tests
                 lancesCenario2
             };
 
-            Leilao leilaoCenario3 = new Leilao("Peça");
+            Leilao leilaoCenario3 = new Leilao("Peça", modaliade);
             var lancesCenario3 = new List<Lance> {
                 new Lance(new Interessada(string.Empty, leilaoCenario3), 800)
             };

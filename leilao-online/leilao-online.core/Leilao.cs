@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using System;
+using LeilaoOnline.Core.Interface;
 
 namespace LeilaoOnline.Core
 {
@@ -23,18 +24,19 @@ namespace LeilaoOnline.Core
 
         private Interessada _ultimoCliente;
         private IList<Lance> _lances;
+        private IModalidadeAvaliacao _avaliador;
+
         public IEnumerable<Lance> Lances => _lances;
         public string Peca { get; }
         public Lance Ganhador { get; private set; }
         public StatusLeilao Status { get; private set; }
-        public double ValorDestino { get; }
 
-        public Leilao(string peca, double valorDestino = 0)
+        public Leilao(string peca, IModalidadeAvaliacao avaliador)
         {
             Peca = peca;
             _lances = new List<Lance>();
             Status = StatusLeilao.ANTES_PREGAO;
-            ValorDestino = valorDestino;
+            _avaliador = avaliador;
         }
 
         private bool ProximoLanceEhValido(Interessada cliente, double valor)
@@ -64,23 +66,7 @@ namespace LeilaoOnline.Core
             if (Status != StatusLeilao.EM_ANDAMENTO)
                 throw new InvalidOperationException("Não é possível terminar o pregão sem ter iniciado.");
 
-            if (ValorDestino > 0)
-            {
-                //Modalidade de lance superior mais proxima
-                Ganhador = Lances
-                    .DefaultIfEmpty(new Lance(null, 0))
-                    .Where(lance => lance.Valor > ValorDestino)
-                    .OrderBy(lance => lance.Valor)
-                    .FirstOrDefault();
-            }
-            else
-            { 
-                //Modalide de maior valor
-                Ganhador = Lances
-                    .DefaultIfEmpty(new Lance(null, 0))
-                    .OrderBy(lance => lance.Valor)
-                    .LastOrDefault();
-            }
+            Ganhador = _avaliador.Avaliar(this);
 
             Status = StatusLeilao.FINALIZADO;
         }

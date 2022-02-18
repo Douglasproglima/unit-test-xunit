@@ -1,4 +1,5 @@
 ﻿using LeilaoOnline.Core;
+using LeilaoOnline.Core.ModalidadeAvaliacao;
 using System;
 
 namespace LeilaoOnline.consoleApp
@@ -16,7 +17,8 @@ namespace LeilaoOnline.consoleApp
         private static void TesteLeilaoComApenasUmLances()
         {
             //Arrange - Cenário
-            var leilao = new Leilao("Picasso");
+            var modaliade = new MaiorValor();
+            var leilao = new Leilao("Picasso", modaliade);
             var paulo = new Interessada("Paulo", leilao);
             
             leilao.ReceberLance(paulo, 850);
@@ -35,7 +37,9 @@ namespace LeilaoOnline.consoleApp
         private static void TesteLeilaoComVariosLances()
         {
             //Arrange - Cenário
-            var leilao = new Leilao("Picasso");
+            var modaliade = new MaiorValor();
+            var leilao = new Leilao("Picasso", modaliade);
+
             var paulo = new Interessada("Paulo", leilao);
             var maria = new Interessada("Maria", leilao);
             var douglas = new Interessada("Douglas", leilao);

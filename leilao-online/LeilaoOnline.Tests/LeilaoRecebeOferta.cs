@@ -1,4 +1,5 @@
 ﻿using LeilaoOnline.Core;
+using LeilaoOnline.Core.ModalidadeAvaliacao;
 using System.Linq;
 using Xunit;
 
@@ -14,7 +15,8 @@ namespace LeilaoOnline.Tests
         public void NaoPermiteProximoLanceParaMesmoClienteRealizouMesmoLance()
         {
             //Arrange/Given - Cenário
-            var leilao = new Leilao("Van Gogh");
+            var modaliade = new MaiorValor();
+            var leilao = new Leilao("Van Gogh", modaliade);
             var fulano = new Interessada("Fulano", leilao);
 
             leilao.IniciarPregao();
@@ -41,7 +43,8 @@ namespace LeilaoOnline.Tests
         public void NaoPermiteNovosLancesDadoLeilaoFinalizado(int qtdeEsperada, double[] ofertas)
         {
             //Arrange/Given - Cenário
-            var leilao = new Leilao("Picasso");
+            var modaliade = new MaiorValor();
+            var leilao = new Leilao("Picasso", modaliade);
             var fulano = new Interessada("Fulano", leilao);
             var siglano = new Interessada("Siglano", leilao);
             

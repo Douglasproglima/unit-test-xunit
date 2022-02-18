@@ -1,4 +1,6 @@
 ﻿using LeilaoOnline.Core;
+using LeilaoOnline.Core.Interface;
+using LeilaoOnline.Core.ModalidadeAvaliacao;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -63,7 +65,8 @@ namespace LeilaoOnline.Tests
         public void RetornarMaiorValorDadoLeilaoComPeloMenosUmLance(double valorEsperado, double[] ofertas)
         {
             //Arrange/Given - Cenário
-            var leilao = new Leilao("Van Gogh");
+            IModalidadeAvaliacao modadelide = new MaiorValor();
+            var leilao = new Leilao("Van Gogh", modadelide);
             var douglas = new Interessada("Douglas", leilao);
             var fulano = new Interessada("Fulano", leilao);
 
@@ -94,7 +97,8 @@ namespace LeilaoOnline.Tests
         public void LancarInvalidOperationExceptionDadoLeilaoNaoIniciado()
         {
             //Arrange/Given - Cenário
-            var leilao = new Leilao("Picasso");
+            IModalidadeAvaliacao modadelide = new MaiorValor();
+            var leilao = new Leilao("Picasso", modadelide);
 
             //Assert/Then
             var excecaoObtida = Assert.Throws<InvalidOperationException>(() =>
@@ -114,7 +118,8 @@ namespace LeilaoOnline.Tests
         public void RetornarZeroDadoLeilaoSemLance()
         {
             //Arrange/Given - Cenário
-            var leilao = new Leilao("Picasso");
+            IModalidadeAvaliacao modadelide = new MaiorValor();
+            var leilao = new Leilao("Picasso", modadelide);
             leilao.IniciarPregao();
 
             //Act/When - Método sob teste
@@ -135,7 +140,8 @@ namespace LeilaoOnline.Tests
         public void RetornarValorSuperiorMaisProximoDadoLeilaoNessaModalidade(double valorDestino, double valorEsperado, double[] ofertas)
         {
             //Arrange/Given - Cenário
-            var leilao = new Leilao("Van Gogh", valorDestino);
+            IModalidadeAvaliacao modalidade = new OfertaSuperiorMaisProxima(valorDestino);
+            var leilao = new Leilao("Van Gogh", modalidade);
             var douglas = new Interessada("Douglas", leilao);
             var fulano = new Interessada("Fulano", leilao);
 
